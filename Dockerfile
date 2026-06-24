@@ -7,10 +7,10 @@ ENV ASPNETCORE_URLS=http://+:8080
 # 2. Etapa de compilación (SDK con etiqueta específica de Linux)
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
-COPY ["Portafolio/Portafolio.csproj", "Portafolio/"]
-RUN dotnet restore "Portafolio/Portafolio.csproj"
+COPY ["Portafolio/Portafolio/Portafolio.csproj", "Portafolio/Portafolio/"]
+RUN dotnet restore "Portafolio/Portafolio/Portafolio.csproj"
 COPY . .
-WORKDIR "/src/Portafolio"
+WORKDIR "/src/Portafolio/Portafolio"
 RUN dotnet build "Portafolio.csproj" -c Release -o /app/build
 
 # 3. Etapa de publicación
