@@ -1,0 +1,274 @@
+@page "/cursos/excel"
+@using Microsoft.AspNetCore.Components.Forms
+
+<div class="container py-5">
+
+    <!-- Botón volver -->
+    <div class="mb-4">
+        <a href="/sobremi" class="btn btn-outline-primary rounded-pill px-4">
+            <i class="bi bi-arrow-left me-2"></i> Volver
+        </a>
+    </div>
+
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <div class="icon-header mx-auto mb-3">
+            <i class="bi bi-file-earmark-excel-fill text-success" style="font-size:3rem;"></i>
+        </div>
+        <h2 class="display-5 fw-bold">Microsoft Excel Avanzado</h2>
+        <div class="bg-success mx-auto mb-3" style="width:80px;height:4px;border-radius:2px;"></div>
+        <p class="text-muted fs-5">Fórmulas, tablas dinámicas, análisis de datos y automatización con VBA.</p>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- DETALLES DEL CURSO -->
+        <div class="col-lg-5">
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+
+                <h5 class="fw-bold mb-3 text-success">
+                    <i class="bi bi-info-circle me-2"></i> Detalles del Curso
+                </h5>
+
+                <ul class="list-unstyled mb-0 course-details">
+
+                    <li class="detail-item">
+                        <i class="bi bi-building text-success me-2"></i>
+                        <span><strong>Institución:</strong> Microsoft Learn</span>
+                    </li>
+
+                    <li class="detail-item">
+                        <i class="bi bi-calendar3 text-success me-2"></i>
+                        <span><strong>Año:</strong> 2024</span>
+                    </li>
+
+                    <li class="detail-item">
+                        <i class="bi bi-clock text-success me-2"></i>
+                        <span><strong>Duración:</strong> 40 horas</span>
+                    </li>
+
+                    <li class="detail-item">
+                        <i class="bi bi-bar-chart-steps text-success me-2"></i>
+                        <span><strong>Nivel:</strong> Avanzado</span>
+                    </li>
+
+                </ul>
+
+                <hr class="my-3" />
+
+                <h6 class="fw-bold text-muted text-uppercase mb-3">Habilidades adquiridas</h6>
+                <div class="d-flex flex-wrap gap-2">
+                    <span class="badge bg-success-subtle text-success border border-success-subtle">Tablas dinámicas</span>
+                    <span class="badge bg-success-subtle text-success border border-success-subtle">Fórmulas avanzadas</span>
+                    <span class="badge bg-success-subtle text-success border border-success-subtle">Power Query</span>
+                    <span class="badge bg-success-subtle text-success border border-success-subtle">Macros VBA</span>
+                    <span class="badge bg-success-subtle text-success border border-success-subtle">Dashboards</span>
+                    <span class="badge bg-success-subtle text-success border border-success-subtle">Análisis de datos</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- COLUMNA DERECHA -->
+        <div class="col-lg-7 d-flex flex-column gap-4">
+
+            <!-- CERTIFICADO -->
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+
+                <h5 class="fw-bold mb-3 text-success">
+                    <i class="bi bi-patch-check me-2"></i> Certificado
+                </h5>
+
+                @if (certificadoUrl == null)
+                {
+                    <!-- Zona de carga -->
+                    <label class="upload-zone w-100 text-center py-4 px-3 rounded-4 d-block" style="cursor:pointer;">
+                        <i class="bi bi-cloud-arrow-up-fill d-block mb-2" style="font-size:2.5rem; color:#198754;"></i>
+                        <div class="fw-semibold text-dark">Subir certificado</div>
+                        <small class="text-muted">PDF, JPG o PNG — máx. 5 MB</small>
+                        <InputFile OnChange="HandleCertificadoSelected"
+                                   class="d-none"
+                                   accept=".pdf,image/*" />
+                    </label>
+                }
+                else
+                {
+                    <div class="text-center">
+                        @if (certificadoEsPdf)
+                        {
+                            <div class="alert alert-success d-flex align-items-center gap-2 rounded-3">
+                                <i class="bi bi-file-earmark-pdf-fill fs-4"></i>
+                                <span>@certificadoNombre cargado correctamente</span>
+                            </div>
+                            <a href="@certificadoUrl" target="_blank" class="btn btn-success rounded-pill px-4">
+                                <i class="bi bi-eye me-2"></i> Ver certificado
+                            </a>
+                        }
+                        else
+                        {
+                            <img src="@certificadoUrl"
+                                 class="img-fluid rounded-3 shadow mb-3"
+                                 style="max-height:250px; object-fit:contain;" />
+                        }
+                        <div class="mt-2">
+                            <label class="btn btn-outline-secondary btn-sm rounded-pill" style="cursor:pointer;">
+                                <i class="bi bi-arrow-repeat me-1"></i> Cambiar
+                                <InputFile OnChange="HandleCertificadoSelected"
+                                           class="d-none"
+                                           accept=".pdf,image/*" />
+                            </label>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+            <!-- PROYECTOS EXCEL -->
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+
+                <h5 class="fw-bold mb-3 text-success">
+                    <i class="bi bi-folder2-open me-2"></i> Proyectos de Excel
+                </h5>
+
+                <!-- Zona de carga proyectos -->
+                <label class="upload-zone w-100 text-center py-3 px-3 rounded-4 d-block mb-3" style="cursor:pointer;">
+                    <i class="bi bi-plus-circle-fill d-block mb-1" style="font-size:2rem; color:#198754;"></i>
+                    <div class="fw-semibold text-dark">Agregar proyecto</div>
+                    <small class="text-muted">.xlsx, .xls, .csv — máx. 10 MB</small>
+                    <InputFile OnChange="HandleProyectoSelected"
+                               class="d-none"
+                               accept=".xlsx,.xls,.csv" />
+                </label>
+
+                <!-- Lista de proyectos -->
+                @if (proyectos.Count == 0)
+                {
+                    <p class="text-muted text-center small mb-0">Aún no hay proyectos cargados.</p>
+                }
+                else
+                {
+                    <div class="d-flex flex-column gap-2">
+                        @foreach (var p in proyectos)
+                        {
+                            <div class="proyecto-item d-flex align-items-center justify-content-between px-3 py-2 rounded-3">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-file-earmark-spreadsheet-fill text-success fs-5"></i>
+                                    <span class="fw-semibold text-dark small">@p</span>
+                                </div>
+                                <button class="btn btn-sm btn-outline-danger rounded-pill px-2 py-0"
+                                        @onclick="() => EliminarProyecto(p)">
+                                    <i class="bi bi-x"></i>
+                                </button>
+                            </div>
+                        }
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+    .icon-header {
+        width: 80px;
+        height: 80px;
+        background: #f0fdf4;
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .detail-item {
+        padding: 0.6rem 0;
+        border-bottom: 1px solid #f1f5f9;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .detail-item:last-child {
+        border-bottom: none;
+    }
+
+    .upload-zone {
+        border: 2px dashed #bbf7d0;
+        background: #f0fdf4;
+        transition: all .3s ease;
+    }
+
+    .upload-zone:hover {
+        border-color: #198754;
+        background: #dcfce7;
+    }
+
+    .proyecto-item {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        transition: all .2s ease;
+    }
+
+    .proyecto-item:hover {
+        background: #f0fdf4;
+        border-color: #bbf7d0;
+    }
+
+</style>
+
+@code {
+
+    /* ── Certificado ── */
+    private string? certificadoUrl;
+    private string? certificadoNombre;
+    private bool certificadoEsPdf;
+
+    private async Task HandleCertificadoSelected(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file == null) return;
+
+        certificadoNombre = file.Name;
+        certificadoEsPdf  = file.ContentType == "application/pdf" ||
+                            file.Name.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase);
+
+        if (certificadoEsPdf)
+        {
+            // Para PDF mostramos solo el nombre y un enlace object-URL no disponible en Blazor Server,
+            // así que guardamos un marcador para mostrar el botón de "Ver certificado" simulado.
+            certificadoUrl = "#";
+        }
+        else
+        {
+            var format = "image/png";
+            var resized = await file.RequestImageFileAsync(format, 800, 800);
+            var buffer  = new byte[(int)resized.Size];
+            await resized.OpenReadStream().ReadAsync(buffer);
+            certificadoUrl = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
+        }
+    }
+
+    /* ── Proyectos ── */
+    private List<string> proyectos = new();
+
+    private async Task HandleProyectoSelected(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file == null) return;
+
+        // Guardamos solo el nombre del archivo (sin procesar el binario)
+        if (!proyectos.Contains(file.Name))
+            proyectos.Add(file.Name);
+
+        await Task.CompletedTask;
+    }
+
+    private void EliminarProyecto(string nombre)
+    {
+        proyectos.Remove(nombre);
+    }
+}

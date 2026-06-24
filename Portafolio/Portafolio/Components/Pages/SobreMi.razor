@@ -1,0 +1,412 @@
+﻿@page "/sobremi"
+@using Microsoft.AspNetCore.Components.Forms
+
+<div class="container py-5">
+
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <h2 class="display-4 fw-bold">Sobre Mí</h2>
+        <div class="bg-primary mx-auto mb-4" style="width:80px;height:4px;border-radius:2px;"></div>
+
+        <p class="text-muted fs-5">
+            Próximo Licenciado en Informática y desarrollador Full Stack apasionado por crear soluciones modernas e innovadoras.
+        </p>
+    </div>
+
+    <div class="row g-5 align-items-start">
+
+        <!-- PERFIL -->
+        <div class="col-lg-4">
+
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+                <div class="bg-primary p-4 text-center text-white">
+
+                    <div class="mb-3">
+                        @if (imageDataUrl == null)
+                        {
+                            <i class="bi bi-person-workspace d-block" style="font-size:5rem;"></i>
+                        }
+                        else
+                        {
+                            <img src="@imageDataUrl"
+                                 class="rounded-circle border border-4 border-white shadow"
+                                 style="width:150px;height:150px;object-fit:cover;" />
+                        }
+                    </div>
+
+                    <label class="btn btn-light btn-sm rounded-pill mb-2">
+                        Cambiar Foto
+                        <InputFile OnChange="HandleFileSelected"
+                                   class="d-none"
+                                   accept="image/*" />
+                    </label>
+
+                    <h3 class="mt-2">Luis Manuel Vicente Ramos</h3>
+
+                    <p class="mb-0 opacity-75">
+                        SFM, República Dominicana
+                    </p>
+
+                </div>
+
+                <div class="card-body p-4">
+
+                    <ul class="list-unstyled mb-0">
+
+                        <li class="mb-3">
+                            <i class="bi bi-envelope-fill text-primary me-2"></i>
+                            tu-correo@email.com
+                        </li>
+
+                        <li class="mb-3">
+                            <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+                            San Francisco de Macorís
+                        </li>
+
+                        <li>
+                            <i class="bi bi-github text-primary me-2"></i>
+                            github.com/tu-usuario
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- INFORMACION -->
+        <div class="col-lg-8">
+
+            <div class="card border-0 shadow-lg rounded-4 p-4 h-100">
+
+                <h4 class="text-primary fw-bold mb-3">
+                    <i class="bi bi-quote me-2"></i>
+                    Filosofía Profesional
+                </h4>
+
+                <p class="text-secondary fs-6 mb-4">
+                    Próximo <strong>Licenciado en Informática</strong>
+                    y desarrollador <strong>Full Stack</strong>
+                    especializado en tecnologías
+                    <strong>.NET</strong>,
+                    <strong>Blazor</strong> y
+                    <strong>SQL Server</strong>.
+                    Apasionado por diseñar soluciones modernas y escalables que optimicen procesos académicos y empresariales mediante desarrollo web, bases de datos y arquitectura de software eficiente.
+                </p>
+
+                <div class="row g-3">
+
+                    <!-- ENFOQUE TÉCNICO -->
+                    <div class="col-md-5">
+                        <div class="p-3 border rounded-4 shadow-sm bg-light h-100">
+                            <h6 class="text-uppercase fw-bold text-muted mb-3">Enfoque Técnico</h6>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-primary">Blazor</span>
+                                <span class="badge bg-primary">C#</span>
+                                <span class="badge bg-primary">SQL Server</span>
+                                <span class="badge bg-primary">.NET</span>
+                                <span class="badge bg-primary">Bootstrap</span>
+                                <span class="badge bg-primary">HTML / CSS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CURSOS -->
+                    <div class="col-md-7">
+
+                        <div class="p-4 border-0 rounded-4 shadow-sm bg-white h-100 modern-course-card">
+
+                            <div class="d-flex align-items-center mb-3">
+
+                                <div class="icon-circle me-3">
+                                    <i class="bi bi-mortarboard-fill"></i>
+                                </div>
+
+                                <div>
+
+                                    <h5 class="fw-bold mb-0">
+                                        Cursos y Tecnologías
+                                    </h5>
+
+                                    <small class="text-secondary">
+                                        Certificaciones y herramientas dominadas
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                            <div class="d-flex flex-column gap-3">
+
+                                <!-- EXCEL -->
+                                <a href="/cursos/excel"
+                                   class="course-item text-decoration-none">
+
+                                    <div class="d-flex justify-content-between align-items-center">
+
+                                        <div class="d-flex align-items-center">
+
+                                            <i class="bi bi-file-earmark-excel-fill me-3 fs-4 text-success"></i>
+
+                                            <div>
+
+                                                <div class="fw-semibold text-dark">
+                                                    Microsoft Excel Avanzado
+                                                </div>
+
+                                                <small class="text-secondary">
+                                                    Fórmulas, tablas dinámicas y análisis
+                                                </small>
+
+                                            </div>
+
+                                        </div>
+
+                                        <i class="bi bi-box-arrow-up-right text-primary"></i>
+
+                                    </div>
+
+                                </a>
+
+                                <!-- CIENCIA DE DATOS -->
+                                <a href="/certificados/ciencia_datos_intermedio.pdf"
+                                   target="_blank"
+                                   class="course-item text-decoration-none">
+
+                                    <div class="d-flex justify-content-between align-items-center">
+
+                                        <div class="d-flex align-items-center">
+
+                                            <i class="bi bi-bar-chart-line-fill me-3 fs-4 text-primary"></i>
+
+                                            <div>
+
+                                                <div class="fw-semibold text-dark">
+                                                    Ciencia de Datos - Nivel Intermedio
+                                                </div>
+
+                                                <small class="text-secondary">
+                                                    Análisis de datos, lógica y herramientas tecnológicas
+                                                </small>
+
+                                            </div>
+
+                                        </div>
+
+                                        <i class="bi bi-box-arrow-up-right text-primary"></i>
+
+                                    </div>
+
+                                </a>
+
+                                <!-- POWER BI -->
+                                <a href="/certificados/powerbi.pdf"
+                                   target="_blank"
+                                   class="course-item text-decoration-none">
+
+                                    <div class="d-flex justify-content-between align-items-center">
+
+                                        <div class="d-flex align-items-center">
+
+                                            <i class="bi bi-bar-chart-fill me-3 fs-4 text-warning"></i>
+
+                                            <div>
+
+                                                <div class="fw-semibold text-dark">
+                                                    Power BI & Business Intelligence
+                                                </div>
+
+                                                <small class="text-secondary">
+                                                    Visualización y análisis de datos
+                                                </small>
+
+                                            </div>
+
+                                        </div>
+
+                                        <i class="bi bi-box-arrow-up-right text-primary"></i>
+
+                                    </div>
+
+                                </a>
+
+                                <!-- ITIL -->
+                                <a href="/certificados/itil.pdf"
+                                   target="_blank"
+                                   class="course-item text-decoration-none">
+
+                                    <div class="d-flex justify-content-between align-items-center">
+
+                                        <div class="d-flex align-items-center">
+
+                                            <i class="bi bi-shield-check me-3 fs-4 text-info"></i>
+
+                                            <div>
+
+                                                <div class="fw-semibold text-dark">
+                                                    ITIL & Gestión IT
+                                                </div>
+
+                                                <small class="text-secondary">
+                                                    Buenas prácticas y servicios TI
+                                                </small>
+
+                                            </div>
+
+                                        </div>
+
+                                        <i class="bi bi-box-arrow-up-right text-primary"></i>
+
+                                    </div>
+
+                                </a>
+
+                            </div>
+
+                            <div class="mt-4 pt-3 border-top">
+
+                                <small class="text-secondary d-block mb-2">
+                                    Plataformas oficiales de aprendizaje
+                                </small>
+
+                                <div class="d-flex flex-wrap gap-2">
+
+                                    <a href="https://learn.microsoft.com/"
+                                       target="_blank"
+                                       class="btn btn-sm btn-outline-primary rounded-pill">
+                                        Microsoft Learn
+                                    </a>
+
+                                    <a href="https://www.sap.com/"
+                                       target="_blank"
+                                       class="btn btn-sm btn-outline-primary rounded-pill">
+                                        SAP
+                                    </a>
+
+                                    <a href="https://www.axelos.com/"
+                                       target="_blank"
+                                       class="btn btn-sm btn-outline-primary rounded-pill">
+                                        AXELOS ITIL
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="mt-4">
+
+                    <a href="/contacto"
+                       class="btn custom-contact-btn btn-lg px-5 py-3 rounded-pill fw-semibold">
+
+                        <i class="bi bi-chat-dots-fill me-2"></i>
+
+                        Contactar para proyectos
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+    .modern-course-card {
+        transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+        .modern-course-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(37,99,235,.12) !important;
+        }
+
+    .icon-circle {
+        width: 55px;
+        height: 55px;
+        border-radius: 18px;
+        background: #eff6ff;
+        color: #2563eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+    }
+
+    .course-item {
+        padding: 1rem;
+        border-radius: 18px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        transition: all .3s ease;
+    }
+
+        .course-item:hover {
+            background: #2563eb;
+            transform: translateY(-3px);
+            border-color: #2563eb;
+            box-shadow: 0 12px 25px rgba(37,99,235,.18);
+        }
+
+            .course-item:hover .text-dark,
+            .course-item:hover .text-secondary,
+            .course-item:hover i {
+                color: white !important;
+            }
+
+    .custom-contact-btn {
+        background: white;
+        color: #2563eb;
+        border: 2px solid #dbeafe;
+        box-shadow: 0 10px 25px rgba(37,99,235,.08);
+        transition: all .35s ease;
+    }
+
+        .custom-contact-btn:hover {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(37,99,235,.25);
+        }
+
+</style>
+
+@code
+{
+    private string? imageDataUrl;
+
+    private async Task HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        var imageFile = e.File;
+
+        if (imageFile != null)
+        {
+            var format = "image/png";
+
+            var resizedImage = await imageFile.RequestImageFileAsync(
+                format,
+                300,
+                300);
+
+            var buffer = new byte[(int)resizedImage.Size];
+
+            await resizedImage.OpenReadStream().ReadAsync(buffer);
+
+            imageDataUrl = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
+        }
+    }
+}

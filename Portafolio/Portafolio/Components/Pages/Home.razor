@@ -1,0 +1,68 @@
+﻿@page "/"
+@inject NavigationManager NavManager
+@rendermode InteractiveServer
+
+<PageTitle>Bienvenido a mi Portafolio</PageTitle>
+
+<div class="container py-5 text-center">
+    <!-- Saludo Principal -->
+    <div class="mb-5">
+        <h1 class="display-3 fw-bold text-primary">¡Hola! Me llamo Luis Manuel Vicente Ramos</h1>
+        <p class="lead text-muted">Bienvenido a mi espacio de trabajos y proyectos.</p>
+    </div>
+
+    <!-- Menú de navegación interactivo -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-4">
+
+        @foreach (var menu in menuItems)
+        {
+            <div class="col">
+                <!-- Se agrega 'role="button"' para accesibilidad -->
+                <div class="card h-100 border-0 shadow-sm transition-card"
+                     @onclick="() => NavManager.NavigateTo(menu.Url)"
+                     role="button"
+                     tabindex="0">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center p-4">
+                        <i class="bi @menu.Icon display-4 text-primary mb-3"></i>
+                        <h4 class="card-title fw-bold">@menu.Titulo</h4>
+                        <p class="card-text text-muted small">@menu.Descripcion</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .transition-card {
+        transition: all 0.1s ease;
+        background-color: #ffffff;
+        cursor: pointer; /* Fuerza el cursor de mano */
+    }
+
+        .transition-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 1rem 3rem rgba(0,0,0,.15) !important;
+            background-color: #f8f9fa;
+        }
+</style>
+
+@code {
+    private List<MenuItem> menuItems = new();
+
+    protected override void OnInitialized()
+    {
+        menuItems.Add(new MenuItem { Titulo = "Proyectos", Icon = "bi-folder-fill", Descripcion = "Mis sistemas y entregables.", Url = "/proyectos" });
+        menuItems.Add(new MenuItem { Titulo = "Habilidades", Icon = "bi-code-slash", Descripcion = "Tecnologías que domino.", Url = "/habilidades" });
+        menuItems.Add(new MenuItem { Titulo = "Sobre Mí", Icon = "bi-person-badge-fill", Descripcion = "Mi perfil profesional.", Url = "/sobremi" });
+        menuItems.Add(new MenuItem { Titulo = "Contacto", Icon = "bi-envelope-at-fill", Descripcion = "Hablemos de trabajo.", Url = "/contacto" });
+    }
+
+    public class MenuItem
+    {
+        public string Titulo { get; set; } = "";
+        public string Icon { get; set; } = "";
+        public string Descripcion { get; set; } = "";
+        public string Url { get; set; } = "";
+    }
+}

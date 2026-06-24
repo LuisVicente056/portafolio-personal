@@ -1,0 +1,134 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Portafolio</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="nav flex-column">
+
+        <div class="nav-item px-3 menu-contenedor">
+            <NavLink class="nav-link d-flex align-items-center" href="" Match="NavLinkMatch.All">
+                <span class="bi-house-door-fill d-inline-flex justify-content-center align-items-center me-2 icono-menu"
+                      style="width: 30px; font-size: 1.25rem;" aria-hidden="true"></span> 
+                <span class="texto-menu">Inicio</span>
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3 menu-contenedor">
+            <NavLink class="nav-link d-flex align-items-center" href="sobremi">
+                <span class="bi-person-fill d-inline-flex justify-content-center align-items-center me-2 icono-menu"
+                      style="width: 30px; font-size: 1.25rem;" aria-hidden="true">
+                </span>
+                <span class="texto-menu">Sobre mí</span>
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3 menu-contenedor">
+            <NavLink class="nav-link d-flex align-items-center" href="proyectos">
+                <span class="bi-briefcase-fill d-inline-flex justify-content-center align-items-center me-2 icono-menu"
+                      style="width: 30px; font-size: 1.25rem;" aria-hidden="true">
+                </span>
+                <span class="texto-menu">Proyectos</span>
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3 menu-contenedor">
+            <NavLink class="nav-link d-flex align-items-center" href="habilidades">
+                <span class="bi-code-slash d-inline-flex justify-content-center align-items-center me-2 icono-menu"
+                      style="width: 30px; font-size: 1.25rem;" aria-hidden="true">
+                </span>
+                <span class="texto-menu">Habilidades Técnicas</span>
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3 menu-contenedor">
+            <NavLink class="nav-link d-flex align-items-center" href="contacto">
+                <span class="bi-envelope-fill d-inline-flex justify-content-center align-items-center me-2 icono-menu"
+                      style="width: 30px; font-size: 1.25rem;" aria-hidden="true">
+                </span>
+                <span class="texto-menu">Contactos</span>
+            </NavLink>
+        </div>
+
+
+
+            
+
+
+
+    </nav>
+</div>
+
+<style>
+    /* Estado inicial: El icono inicia en BLANCO */
+    .menu-contenedor .icono-menu {
+        color: #ffffff !important; /* Blanco puro */
+        position: relative;
+        bottom: 0px;
+        transition: bottom 0.2s ease-in-out, color 0.2s ease-in-out !important;
+    }
+    
+    /* El texto mantiene su color original de Bootstrap en todo momento */
+    .menu-contenedor .texto-menu {
+        color: #f8f9fa; 
+    }
+
+    /* Al pasar el mouse (Hover) SOLO cambia el icono */
+    .menu-contenedor:hover .icono-menu {
+        color: #0d6efd !important; /* El icono cambia al azul de Bootstrap */
+        bottom: 5px;               /* El icono sube 5 píxeles de forma limpia */
+    }
+
+    /* Forzamos a que las letras NO cambien de color al hacer hover */
+    .menu-contenedor:hover .texto-menu {
+        color: #f8f9fa !important; 
+    }
+</style>>
+
+    <style>
+    /* Estado inicial: El icono inicia en BLANCO */
+    .menu-contenedor .icono-menu {
+        color: #ffffff !important; /* Blanco puro */
+        position: relative;
+        bottom: 0px;
+        transition: bottom 0.2s ease-in-out, color 0.2s ease-in-out !important;
+    }
+    
+    /* El texto mantiene su color original de Bootstrap en todo momento */
+    .menu-contenedor .texto-menu {
+        color: #f8f9fa; 
+    }
+
+    /* Al pasar el mouse (Hover) cambia el icono y sube */
+    .menu-contenedor:hover .icono-menu {
+        color: #0d6efd !important; /* El icono cambia al azul de Bootstrap */
+        bottom: 5px;               /* El icono sube 5 píxeles */
+    }
+
+    body, .navbar, .card, a {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+    
+</style>
+
+<script>
+    function alternarTemaBootstrap() {
+        // Buscamos el contenedor que tiene el atributo de Bootstrap
+        const contenedor = document.querySelector('[data-bs-theme]');
+        const icono = document.getElementById('icono-tema');
+
+        // Leemos el tema actual
+        let tema = contenedor.getAttribute('data-bs-theme');
+
+        if (tema === 'light') {
+            contenedor.setAttribute('data-bs-theme', 'dark');
+            icono.textContent = '☀️';
+        } else {
+            contenedor.setAttribute('data-bs-theme', 'light');
+            icono.textContent = '🌙';
+        }
+    }
+</script>
