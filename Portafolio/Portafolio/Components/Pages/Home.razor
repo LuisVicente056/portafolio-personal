@@ -11,15 +11,24 @@
         <p class="lead text-muted">Bienvenido a mi espacio de trabajos y proyectos.</p>
     </div>
 
+    <!-- MENSAJE EN PANTALLA (Aparece solo cuando haces clic en una tarjeta) -->
+    @if (!string.IsNullOrEmpty(MensajeAlerta))
+    {
+        <div class="alert alert-info alert-dismissible fade show shadow-sm my-4 mx-auto" role="alert" style="max-width: 500px;">
+            <i class="bi bi-info-circle-fill me-2"></i> @MensajeAlerta
+            <button type="button" class="btn-close" @onclick="CerrarMensaje" aria-label="Close"></button>
+        </div>
+    }
+
     <!-- Menú de navegación interactivo -->
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-4">
 
         @foreach (var menu in menuItems)
         {
             <div class="col">
-                <!-- Se agrega 'role="button"' para accesibilidad -->
+                <!-- Ahora llama a la función MostrarMensaje en lugar de navegar -->
                 <div class="card h-100 border-0 shadow-sm transition-card"
-                     @onclick="() => NavManager.NavigateTo(menu.Url)"
+                     @onclick="() => MostrarMensaje(menu.Titulo)"
                      role="button"
                      tabindex="0">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center p-4">
@@ -37,7 +46,7 @@
     .transition-card {
         transition: all 0.1s ease;
         background-color: #ffffff;
-        cursor: pointer; /* Fuerza el cursor de mano */
+        cursor: pointer;
     }
 
         .transition-card:hover {
@@ -50,12 +59,27 @@
 @code {
     private List<MenuItem> menuItems = new();
 
+    // Variable para almacenar el mensaje que se mostrará
+    private string MensajeAlerta = "";
+
     protected override void OnInitialized()
     {
         menuItems.Add(new MenuItem { Titulo = "Proyectos", Icon = "bi-folder-fill", Descripcion = "Mis sistemas y entregables.", Url = "/proyectos" });
         menuItems.Add(new MenuItem { Titulo = "Habilidades", Icon = "bi-code-slash", Descripcion = "Tecnologías que domino.", Url = "/habilidades" });
         menuItems.Add(new MenuItem { Titulo = "Sobre Mí", Icon = "bi-person-badge-fill", Descripcion = "Mi perfil profesional.", Url = "/sobremi" });
         menuItems.Add(new MenuItem { Titulo = "Contacto", Icon = "bi-envelope-at-fill", Descripcion = "Hablemos de trabajo.", Url = "/contacto" });
+    }
+
+    // Función que se ejecuta al hacer clic en cualquier tarjeta
+    private void MostrarMensaje(string nombreSeccion)
+    {
+        MensajeAlerta = $"Has seleccionado la sección de {nombreSeccion}. ¡Aún está en desarrollo!";
+    }
+
+    // Función para cerrar la alerta cuando le das a la 'X'
+    private void CerrarMensaje()
+    {
+        MensajeAlerta = "";
     }
 
     public class MenuItem
