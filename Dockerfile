@@ -1,11 +1,11 @@
 # 1. Etapa de ejecución (Base con etiqueta específica de Linux)
-FROM mcr.microsoft.com/dotnet/aspnet:10.0-bookworm-slim AS base
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 WORKDIR /app
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
 
 # 2. Etapa de compilación (SDK con etiqueta específica de Linux)
-FROM mcr.microsoft.com/dotnet/sdk:10.0-bookworm AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 COPY ["Portafolio/Portafolio.csproj", "Portafolio/"]
 RUN dotnet restore "Portafolio/Portafolio.csproj"
